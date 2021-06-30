@@ -8,7 +8,7 @@ public class App {
     
     private String direccionVivienda;
     
-    public static void main(String[] args) throws Exception {
+    public static void main2(String[] args) throws Exception {
         //Operadores aritmeticos
         int resultado = 5 + 4;
         double resultado2 = 5 / 4;
