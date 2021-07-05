@@ -49,6 +49,7 @@ public class Wallet {
             return "Error. Romper el limite tiene un costo de 10000, usted tiene " + saldo;
         }
         saldo -= 10000;
+        tieneLimite = false;
         return "Operación exitosa. Su cuenta ahora es sin límites, nuevo saldo: " + saldo;
     }
     
