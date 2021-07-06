@@ -4,7 +4,7 @@ import model.Wallet;
 
 public class Vista {
         
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         Wallet wallet1 = new Wallet(true);
         //Wallet wallet1 = new Wallet(false);
         Wallet wallet2 = new Wallet(false);
