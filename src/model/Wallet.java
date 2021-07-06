@@ -69,7 +69,7 @@ public class Wallet {
         return false;
     }
 
-    public String breakLimit(){
+    public String breakLimite(){
         if (!tieneLimite){
             return "Error. Su cuenta es sin límites";
         }
@@ -77,6 +77,7 @@ public class Wallet {
             return "Error. Romper el limite tiene un costo de 10000, usted tiene " + saldo;
         }
         saldo -= 10000;
+        tieneLimite = false;
         return "Operación exitosa. Su cuenta ahora es sin límites, nuevo saldo: " + saldo;
     }
     
