@@ -10,6 +10,7 @@ public class VistaUser {
         Owner owner2 = new Owner("Luisa");
         System.out.println(owner1.getNombre());
         System.out.println(owner2.getNombre());
+        
         owner1.getWallet().putSaldo(100000);
 
         Company empresa = new Company("Nestle");
