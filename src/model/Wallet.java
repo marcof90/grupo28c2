@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Wallet {
 
     public static final int LIMITE_BILLETERA = 500000;
@@ -10,10 +12,32 @@ public class Wallet {
     private int saldo;
     private boolean tieneLimite;
     private int meta;
-    
+
+    /**
+     * lista de transacciones de la Wallet
+     */
+    private ArrayList<Transaction> transactions;
+
+    /**
+     * Metodo constructor de la clase. <p>
+     * saldo = 0; <p>
+     * meta = 0; <p>
+     * tieneLimite = true; <p>
+     * transactions = new ArrayList<>(); <p>
+     * saldo = 0; <p>
+     * @param limite limite que tiene la wallet según tipo
+     */    
     public Wallet(boolean limite) {
         super();
         saldo = 0;
+        meta = 0;
+        tieneLimite = limite;
+        transactions = new ArrayList<>();
+    }
+    
+    public Wallet(boolean limite, int saldo) {
+        super();
+        this.saldo = saldo;
         meta = 0;
         tieneLimite = limite;
     }
@@ -27,6 +51,8 @@ public class Wallet {
             return "No puede superar el limite";
         }
         saldo += valor;
+        Transaction transaction = new Transaction(valor, "hoy", 1);
+        transactions.add(transaction);
         if(verificarMeta()){System.out.println("Has superado la meta!");}
         return "Operación exitosa, nuevo saldo " + saldo;
     }
@@ -41,6 +67,8 @@ public class Wallet {
             return "Solo se retiró " + saldoTemp;
         }
         saldo -= valor;
+        Transaction transaction = new Transaction(valor, "hoy", 2);
+        transactions.add(transaction);
         return "Retiro exitoso, nuevo saldo " + saldo;
     }
 
@@ -80,5 +108,21 @@ public class Wallet {
         tieneLimite = false;
         return "Operación exitosa. Su cuenta ahora es sin límites, nuevo saldo: " + saldo;
     }
+
+    public String compararBilleteras(Wallet otraWallet){        
+        if(saldo > otraWallet.getSaldo()){
+            return "Tienes más saldo!";
+        }
+        else if(saldo == otraWallet.getSaldo()){
+            return "Ambos saldos son iguales";
+        }else{
+            return "Tienes menos saldo :(";
+        }
+    }
     
+    public void displayExtractos(){
+        for (Transaction transaction : transactions) {
+            System.out.println(transaction);
+        }
+    }
 }

@@ -7,7 +7,7 @@ public class Owner extends Usuario{
         super();
         wallet = new Wallet(true);
         setNombre(nNombre);
-    }
+    }  
 
     public Wallet getWallet() {
         return wallet;
