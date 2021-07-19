@@ -32,7 +32,8 @@ public class Wallet {
         saldo = 0;
         meta = 0;
         tieneLimite = limite;
-        transactions = new ArrayList<>();
+        transactions = new ArrayList<>();        
+        transactions.size();
     }
     
     public Wallet(boolean limite, int saldo) {
