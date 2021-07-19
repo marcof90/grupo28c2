@@ -9,6 +9,12 @@ public class Owner extends Usuario{
         setNombre(nNombre);
     }
 
+    @Override
+    public String getNombre() {
+        // TODO Auto-generated method stub
+        return super.getNombre();
+    }
+
     public Wallet getWallet() {
         return wallet;
     }

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Wallet {
 
     public static final int LIMITE_BILLETERA = 500000;
@@ -11,11 +13,27 @@ public class Wallet {
     private boolean tieneLimite;
     private int meta;
     
+    /**
+     * lista de transacciones de la Wallet
+     */
+    private ArrayList<Transaction> transactions;
+
+    /**
+     * Método contructor de la clase. <br>
+     * <br>
+     * saldo = 0; <br>
+     * meta = 0; <br>
+     * tieneLimite = true; <br>
+     * transactions
+     * @param limite limite que tiene la wallet según tipo
+     */
     public Wallet(boolean limite) {
         super();
         saldo = 0;
         meta = 0;
         tieneLimite = limite;
+        transactions = new ArrayList<>();
+        transactions.size();
     }
 
     public int getSaldo(){
@@ -27,6 +45,8 @@ public class Wallet {
             return "No puede superar el limite";
         }
         saldo += valor;
+        Transaction transaction = new Transaction(valor, "hoy", 1);
+        transactions.add(transaction);
         if(verificarMeta()){System.out.println("Has superado la meta!");}
         return "Operación exitosa, nuevo saldo " + saldo;
     }
@@ -79,6 +99,24 @@ public class Wallet {
         saldo -= 10000;
         tieneLimite = false;
         return "Operación exitosa. Su cuenta ahora es sin límites, nuevo saldo: " + saldo;
+    }
+
+    public String compararBilleteras(Wallet otraWallet){
+        if(saldo > otraWallet.getSaldo()){
+            return "Tienes más saldo!";
+        }
+        else if(saldo == otraWallet.getSaldo()){
+            return "Ambos saldos son iguales";
+        }else{
+            return "Tienes menos saldo :(";
+        }
+        
+    }
+
+    public void displayExtractos(){
+        for (Transaction transaction : transactions){
+            System.out.println(transaction);
+        }
     }
     
 }
