@@ -5,7 +5,7 @@ import model.Owner;
 
 public class VistaUser {
 
-    public static void main3(String[] args) {
+    public static void main2(String[] args) {
         Owner owner1 = new Owner("Susen");
         Owner owner2 = new Owner("Luisa");
         System.out.println(owner1.getNombre());
@@ -17,5 +17,5 @@ public class VistaUser {
         System.out.println(response);
 
     }
-
+    
 }

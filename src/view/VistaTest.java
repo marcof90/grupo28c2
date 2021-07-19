@@ -7,7 +7,7 @@ public class VistaTest {
 
     public static void main(String[] args) {
         Testing tests = new Testing();
-        tests.escenarioWallet();
+        tests.escenarioOwner();
     }
 
 }
