@@ -40,9 +40,13 @@ public class Wallet {
         return saldo;
     }
 
-    public String putSaldo(int valor){
+    public String putSaldo(int valor) throws Exception{
         if(saldo + valor > LIMITE_BILLETERA && tieneLimite){
-            return "No puede superar el limite";
+            throw new Exception("No puede superar el limite");
+        }
+
+        if (valor <= 0) {
+            throw new Exception("No puede consignar un valor nulo o negativo");
         }
         saldo += valor;
         Transaction transaction = new Transaction(valor, "hoy", 1);
@@ -51,10 +55,14 @@ public class Wallet {
         return "Operación exitosa, nuevo saldo " + saldo;
     }
 
-    public String getMoney(int valor) {
+    public String getMoney(int valor) throws Exception{
         // if(valor > saldo){
         //     return "Saldo insuficiente";
         // }
+        if (valor <= 0) {
+            throw new Exception("No puede consignar un valor nulo o negativo");
+        }
+
         if(valor > saldo){
             int saldoTemp = saldo;
             saldo = 0;
