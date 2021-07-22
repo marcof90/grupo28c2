@@ -18,7 +18,7 @@ public class Vista {
         wallet2.putSaldo(605000);
         wallet2.putSaldo(600200);
         wallet2.putSaldo(600000);
-        wallet2.putSaldo(600000);
+        wallet2.putSaldo(500000);
         // System.out.println(wallet2.getSaldo());
         wallet2.displayExtractos();
         //System.out.println(wallet1.breakLimit());
