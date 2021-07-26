@@ -47,9 +47,9 @@ public class Wallet {
         return saldo;
     }
 
-    public String putSaldo(int valor){
+    public String putSaldo(int valor) throws Exception{
         if(saldo + valor > LIMITE_BILLETERA && tieneLimite){
-            return "No puede superar el limite";
+            throw new Exception("No puede superar el limite");
         }
         saldo += valor;
         Transaction transaction = new Transaction(valor, "hoy", 1);
