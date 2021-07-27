@@ -1,6 +1,10 @@
 package model;
 
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Properties;
+
 
 public class Wallet {
 
@@ -12,6 +16,7 @@ public class Wallet {
     private int saldo;
     private boolean tieneLimite;
     private int meta;
+    
     
     /**
      * lista de transacciones de la Wallet
@@ -122,9 +127,24 @@ public class Wallet {
     }
 
     public void displayExtractos(){
-        for (Transaction transaction : transactions){
-            System.out.println(transaction);
+
+        try {
+            
+            OutputStream ous = new FileOutputStream("./data/data.properties");
+
+            Properties prop = new Properties();
+
+            
+            for (Transaction transaction : transactions){
+                System.out.println(transaction);
+            }
+
+            prop.store(ous, null);
+            
+        } catch (Exception e) {
+            //TODO: handle exception
         }
+
     }
     
 }
