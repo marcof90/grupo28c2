@@ -1,6 +1,9 @@
 package model;
 
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class Wallet {
 
@@ -32,7 +35,8 @@ public class Wallet {
         saldo = 0;
         meta = 0;
         tieneLimite = limite;
-        transactions = new ArrayList<>();
+        transactions = new ArrayList<>();        
+        transactions.size();
     }
     
     public Wallet(boolean limite, int saldo) {
@@ -122,5 +126,22 @@ public class Wallet {
             System.out.println(transaction);
         }
     }
-    
+
+    public void guardarExtractosProperties(String id){
+        try {
+
+            OutputStream ous = new FileOutputStream("./data/" + id + ".properties");
+            Properties prop = new Properties();
+            
+            for(int i = 0; i < transactions.size(); i++){
+                prop.setProperty("transaction"+i, transactions.get(i).toString());
+            }
+            
+            prop.store(ous, null);
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -13,10 +13,15 @@ public class Vista {
         String saldo1 = wallet1.putSaldo(600000);
         // System.out.println(wallet1.getSaldo());
         System.out.println(saldo1);
-        String saldo2 = wallet2.putSaldo(600000);
+        wallet2.putSaldo(600000);
+        wallet2.putSaldo(600000);
+        wallet2.putSaldo(605000);
+        wallet2.putSaldo(600200);
+        wallet2.putSaldo(600000);
+        wallet2.putSaldo(600000);
         // System.out.println(wallet2.getSaldo());
-        System.out.println(saldo2);
         wallet2.displayExtractos();
+        wallet2.extractosProperties("hola");
         //System.out.println(wallet1.breakLimit());
         //System.out.println(wallet2.breakLimit());
     }
