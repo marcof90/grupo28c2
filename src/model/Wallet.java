@@ -83,6 +83,17 @@ public class Wallet {
         return "Operación exitosa. Su cuenta ahora es sin límites, nuevo saldo: " + saldo;
     }
     
+    public String compararBilleteras(Wallet otraWallet){
+        if(saldo > otraWallet.getSaldo()){
+            return "Tiene mas saldo!";    
+        }
+        else if (saldo == otraWallet.getSaldo()){
+            return "Ambos saldos son iguales";
+        }else{
+            return "Tienes menos saldo";
+        }
 
+
+    }
     
 }

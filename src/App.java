@@ -63,10 +63,11 @@ public class App {
         for (String string : args) {
             //bloque de codigo            
         }
-        for (int i = 0; i < args.length; i++) {
+        //for (int i = 0; i < args.length; i++) {
+
             //bloque de codigo
-        }
-        for(;;){} // for infinito
+        //}
+        //for(;;){} // for infinito
     }
 
 }
