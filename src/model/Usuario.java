@@ -8,15 +8,13 @@ public class Usuario {
 
     public Usuario() {
         super();
-        tiposDocumento = new String[5];
+        tiposDocumento = new String[6];
         tiposDocumento[0] = "CC";
         tiposDocumento[1] = "TI";
         tiposDocumento[2] = "Pasaporte";
         tiposDocumento[3] = "PEP";
         tiposDocumento[4] = "DNI";
-        tiposDocumento[5] = "RC";
-
-        
+        tiposDocumento[5] = "RC";        
     }
 
     public char getEstado() {

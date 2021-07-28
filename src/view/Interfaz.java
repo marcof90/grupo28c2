@@ -20,7 +20,6 @@ public class Interfaz extends JFrame{
         setLayout(new BorderLayout());
         setTitle("Wallet");
 
-
         //inicializar
         panelOpciones = new PanelOpciones(this);
         control = new Controlador();
