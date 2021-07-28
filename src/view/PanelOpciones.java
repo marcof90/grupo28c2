@@ -12,33 +12,37 @@ public class PanelOpciones extends JPanel implements ActionListener{
     
     public final static String BTN_SALDO = "Ver Saldo";
     public final static String BTN_CARGAR = "Cargar Saldo";
+    public final static String BTN_AGREGAR = "Agregar Cliente";
 
     //crear atributo o relacion
     private JButton btnSaldo;
     private JButton btnCargar;
-
+    private JButton btnAgregar;
     //Interfaz
     private Interfaz interfaz;
 
     public PanelOpciones(Interfaz inter) {
         super();
-
         interfaz = inter;
 
-        setLayout(new GridLayout(1, 2));
+        setLayout(new GridLayout(1, 3));
         setBorder(new TitledBorder("Opciones"));
         //se inicializan
         btnSaldo = new JButton(BTN_SALDO);
         btnCargar = new JButton(BTN_CARGAR);
+        btnAgregar = new JButton(BTN_AGREGAR);
 
         //se modifican las propiedades (opcional)
+        btnAgregar.setActionCommand(BTN_AGREGAR);
         btnSaldo.setActionCommand(BTN_SALDO);
         btnCargar.setActionCommand(BTN_CARGAR);
 
+        btnAgregar.addActionListener(this);
         btnCargar.addActionListener(this);
         btnSaldo.addActionListener(this);
 
         //se agregan
+        add(btnAgregar);
         add(btnSaldo);
         add(btnCargar);
     }
@@ -51,6 +55,8 @@ public class PanelOpciones extends JPanel implements ActionListener{
             // System.out.println("el saldo");
         }else if(e.getActionCommand().equals(BTN_CARGAR)){
             System.out.println("Cargar");
+        }else if(e.getActionCommand().equals(btnAgregar.getActionCommand())){
+            JOptionPane.showInputDialog("Digite el nombre del cliente");
         }
     }
 

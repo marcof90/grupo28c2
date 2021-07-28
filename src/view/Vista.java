@@ -28,19 +28,7 @@ public class Vista {
             System.err.println(e.getMessage());
         }
         //String saldo1 = wallet1.putSaldo(10000);
-<<<<<<< HEAD
        
-=======
-        String saldo1 = wallet1.putSaldo(600000);
-        // System.out.println(wallet1.getSaldo());
-        System.out.println(saldo1);
-        wallet2.putSaldo(600000);
-        wallet2.putSaldo(600000);
-        wallet2.putSaldo(605000);
-        wallet2.putSaldo(600200);
-        wallet2.putSaldo(600000);
-        wallet2.putSaldo(500000);
->>>>>>> 61265ee9655e4890b8288bcd621bed8665b8e2e2
         // System.out.println(wallet2.getSaldo());
         wallet2.displayExtractos();
         //System.out.println(wallet1.breakLimit());
