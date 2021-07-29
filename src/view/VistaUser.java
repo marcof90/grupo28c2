@@ -5,7 +5,7 @@ import model.Owner;
 
 public class VistaUser {
 
-    public static void main2(String[] args) {
+    public static void main2(String[] args) throws Exception {
         Owner owner1 = new Owner("Susen");
         Owner owner2 = new Owner("Luisa");
         System.out.println(owner1.getNombre());

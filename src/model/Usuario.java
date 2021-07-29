@@ -8,7 +8,7 @@ public class Usuario {
 
     public Usuario() {
         super();
-        tiposDocumento = new String[5];
+        tiposDocumento = new String[6];
         tiposDocumento[0] = "CC";
         tiposDocumento[1] = "TI";
         tiposDocumento[2] = "Pasaporte";

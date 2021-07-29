@@ -13,10 +13,14 @@ public class PanelOpciones extends JPanel implements ActionListener {
 
     public final static String BTN_SALDO = "Ver Saldo";
     public final static String BTN_CARGAR = "Cargar Saldo";
+    public final static String BTN_AGREGAR = "Agregar cliente";
+    public final static String BTN_LISTAR = "Listar";
 
     //crear atributo o relación
     private JButton btnSaldo;
     private JButton btnCargar;
+    private JButton btnAgregar;
+    private JButton btnListar;
 
     //Interfaz
     private Interfaz interfaz;
@@ -26,24 +30,45 @@ public class PanelOpciones extends JPanel implements ActionListener {
 
         interfaz = inter;
 
-        setLayout(new GridLayout());
+        setLayout(new GridLayout(1, 3));
         setBorder(new TitledBorder("Opciones"));
 
         //se inicializan
         btnSaldo = new JButton(BTN_SALDO);
         btnCargar = new JButton(BTN_CARGAR);
+        btnAgregar = new JButton(BTN_AGREGAR);
+        btnListar = new JButton(BTN_LISTAR);
 
         //se modifican las propiedades (opcional)
+        btnListar.setActionCommand(BTN_LISTAR);
+        btnAgregar.setActionCommand(BTN_AGREGAR);
         btnSaldo.setActionCommand(BTN_SALDO);
         btnCargar.setActionCommand(BTN_CARGAR);
 
+        btnListar.addActionListener(this);
+        btnAgregar.addActionListener(this);
         btnCargar.addActionListener(this);
         btnSaldo.addActionListener(this);
 
         //se agregan
+        add(btnListar);
+        add(btnAgregar);
         add(btnSaldo);
         add(btnCargar);
 
+    }
+
+    public void agregarCliente() {
+        String nombre = JOptionPane.showInputDialog("Digite el nombre del cliente.");
+            if (nombre != null && !nombre.trim().equalsIgnoreCase("")) {
+                if(interfaz.addOwner(nombre)){
+                    JOptionPane.showMessageDialog(interfaz, "Se agregó el ususario.");
+                }else{
+                    JOptionPane.showMessageDialog(interfaz, "No se pudo agregar el usuario.");
+                }
+            }else{
+                JOptionPane.showMessageDialog(interfaz, "Revisa los datos.");
+            }
     }
 
     @Override
@@ -54,6 +79,18 @@ public class PanelOpciones extends JPanel implements ActionListener {
             // System.out.println("el saldo");
         }else if ((e.getActionCommand().equals(BTN_CARGAR))){
             System.out.println("Cargar");
+        }else if(e.getActionCommand().equals(btnAgregar.getActionCommand())){
+            String nombre = JOptionPane.showInputDialog("Digite el nombre del cliente.");
+            if (nombre != null && !nombre.trim().equalsIgnoreCase("")) {
+                if(interfaz.addOwner(nombre)){
+                    JOptionPane.showMessageDialog(interfaz, "Se agregó el ususario.");
+                }else{
+                    JOptionPane.showMessageDialog(interfaz, "No se pudo agregar el usuario.");
+                }
+            }else{
+                JOptionPane.showMessageDialog(interfaz, "Revisa los datos.");
+            }
+
         }
     }
 
