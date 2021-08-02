@@ -13,6 +13,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
     public final static String BTN_SALDO = "Ver Saldo";
     public final static String BTN_CARGAR = "Cargar Saldo";
     public final static String BTN_AGREGAR = "Agregar Cliente";
+    public final static String BTN_LISTAR = "Listar clientes";
 
     // crear atributo o relacion
     private JButton btnSaldo;
@@ -32,18 +33,21 @@ public class PanelOpciones extends JPanel implements ActionListener {
         btnSaldo = new JButton(BTN_SALDO);
         btnCargar = new JButton(BTN_CARGAR);
         btnAgregar = new JButton(BTN_AGREGAR);
+        btnListar = new JButton(BTN_LISTAR);
 
         // se modifican las propiedades (opcional)
         btnAgregar.setActionCommand(BTN_AGREGAR);
         btnSaldo.setActionCommand(BTN_SALDO);
         btnCargar.setActionCommand(BTN_CARGAR);
+        btnListar.setActionCommand(BTN_LISTAR);
 
         btnAgregar.addActionListener(this);
         btnCargar.addActionListener(this);
         btnSaldo.addActionListener(this);
-
+        btnListar.addActionListener(this);
         // se agregan
         add(btnAgregar);
+        add(btnListar);
         add(btnSaldo);
         add(btnCargar);
     }
@@ -61,6 +65,12 @@ public class PanelOpciones extends JPanel implements ActionListener {
         }
     }
 
+    public void listarOwners(){
+        String resultado = interfaz.listarOwners();
+        JOptionPane.showMessageDialog(interfaz, resultado, "Listado de clientes", JOptionPane.PLAIN_MESSAGE);
+        // JOptionPane.showMessageDialog(interfaz, interfaz.listarOwners(), "Listado de clientes", JOptionPane.PLAIN_MESSAGE);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
@@ -71,6 +81,8 @@ public class PanelOpciones extends JPanel implements ActionListener {
             System.out.println("Cargar");
         } else if (e.getActionCommand().equals(btnAgregar.getActionCommand())) {
             agregarCliente();
+        }else if(e.getActionCommand().equals(BTN_LISTAR)){
+            listarOwners();
         }
     }
 }

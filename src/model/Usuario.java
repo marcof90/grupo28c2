@@ -17,6 +17,17 @@ public class Usuario {
         tiposDocumento[5] = "RC";        
     }
 
+    public Usuario(String nombre, int numero) {
+        super();
+        tiposDocumento = new String[6];
+        tiposDocumento[0] = "CC";
+        tiposDocumento[1] = "TI";
+        tiposDocumento[2] = "Pasaporte";
+        tiposDocumento[3] = "PEP";
+        tiposDocumento[4] = "DNI";
+        tiposDocumento[5] = "RC";   
+    }
+
     public char getEstado() {
         return estado;
     }
