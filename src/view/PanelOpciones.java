@@ -14,13 +14,14 @@ public class PanelOpciones extends JPanel implements ActionListener {
     public final static String BTN_SALDO = "ver saldo";
     public final static String BTN_CARGA = "Cargar Saldo";
     public final static String BTN_AGREGAR = "Agregar Cliente";
-
+    public final static String BTN_LISTAR =  "Listar clientes";
+    
     //crear atributos o relacion
     private JButton btnSaldo;
     private JButton btnCarga;
     private JButton btnAgregar;
     private JButton btnListar;
-    
+
 
 
     //interfaz
@@ -32,28 +33,33 @@ public class PanelOpciones extends JPanel implements ActionListener {
 
         interfez = inter;
 
-        setLayout(new GridLayout(1, 3));
+        setLayout(new GridLayout(1, 4));
         setBorder(new TitledBorder("Opciones"));
 
         //se inicializan
         btnSaldo = new JButton(BTN_SALDO);
         btnCarga = new JButton(BTN_CARGA);
         btnAgregar = new JButton(BTN_AGREGAR);
+        btnListar = new JButton(BTN_LISTAR);
+
 
 
         //se modifican las propiedades
         btnAgregar.setActionCommand(BTN_AGREGAR);
         btnCarga.setActionCommand(BTN_CARGA); 
         btnSaldo.setActionCommand(BTN_SALDO);
+        btnListar.setActionCommand(BTN_LISTAR);
 
         btnAgregar.addActionListener(this);
         btnCarga.addActionListener(this);
         btnSaldo.addActionListener(this);
+        btnListar.addActionListener(this);
 
         //se agregan los botones 
         add(btnAgregar);
         add(btnSaldo);
         add(btnCarga);
+        add(btnListar);
 
 
     }
@@ -71,6 +77,9 @@ public class PanelOpciones extends JPanel implements ActionListener {
             }
     }
 
+    public void listarOwners(){
+        JOptionPane.showMessageDialog(interfez, interfez.listrOwners(),"listados de clientes",JOptionPane.INFORMATION_MESSAGE);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -83,6 +92,8 @@ public class PanelOpciones extends JPanel implements ActionListener {
             System.out.println("cargar saldo");
         }else if (e.getActionCommand().equals(btnAgregar.getActionCommand())){
            agregarCliente(); 
+        }else if (e.getActionCommand().equals(BTN_LISTAR)) {
+           listarOwners(); 
         }
         
     }

@@ -13,6 +13,8 @@ public class Interfez extends JFrame{
     //se crea el atributo o relacion
     private PanelOpciones panelOpciones;
 
+    private PanelOwners panelOwners;
+
     private Controlador control;
 
     public Interfez() {
@@ -23,18 +25,23 @@ public class Interfez extends JFrame{
         
         //inicializar 
         panelOpciones = new PanelOpciones(this);
+        panelOwners = new PanelOwners(this);
         control = new Controlador();
 
         //modificar 
 
         //agregar 
         add(panelOpciones, BorderLayout.SOUTH);
+        add(panelOwners, BorderLayout.NORTH);
 
     }
 
     public boolean addOwner(String nombre){
         return control.addOwner(nombre);
 
+    }
+    public String listrOwners(){
+        return control.listarOwners();
     }
 
 
