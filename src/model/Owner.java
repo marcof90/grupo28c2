@@ -18,4 +18,11 @@ public class Owner extends Usuario{
     public Wallet getWallet() {
         return wallet;
     }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        // return super.toString();
+        return "Nombre: " + getNombre();
+    }
 }

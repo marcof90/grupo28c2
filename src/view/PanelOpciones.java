@@ -14,7 +14,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
     public final static String BTN_SALDO = "Ver Saldo";
     public final static String BTN_CARGAR = "Cargar Saldo";
     public final static String BTN_AGREGAR = "Agregar cliente";
-    public final static String BTN_LISTAR = "Listar";
+    public final static String BTN_LISTAR = "Listar clientes";
 
     //crear atributo o relación
     private JButton btnSaldo;
@@ -71,6 +71,10 @@ public class PanelOpciones extends JPanel implements ActionListener {
             }
     }
 
+    public void listarOwners(){
+        JOptionPane.showMessageDialog(interfaz, interfaz.listarOwners(), "Lstado de clientes", JOptionPane.PLAIN_MESSAGE);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
@@ -91,6 +95,8 @@ public class PanelOpciones extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(interfaz, "Revisa los datos.");
             }
 
+        }else if(e.getActionCommand().equals(BTN_LISTAR)){
+            listarOwners();
         }
     }
 
