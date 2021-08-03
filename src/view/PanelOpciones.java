@@ -63,6 +63,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
             if (nombre != null && !nombre.trim().equalsIgnoreCase("")) {
                 if(interfaz.addOwner(nombre)){
                     JOptionPane.showMessageDialog(interfaz, "Se agregó el ususario.");
+                    interfaz.updateList();
                 }else{
                     JOptionPane.showMessageDialog(interfaz, "No se pudo agregar el usuario.");
                 }
@@ -84,17 +85,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
         }else if ((e.getActionCommand().equals(BTN_CARGAR))){
             System.out.println("Cargar");
         }else if(e.getActionCommand().equals(btnAgregar.getActionCommand())){
-            String nombre = JOptionPane.showInputDialog("Digite el nombre del cliente.");
-            if (nombre != null && !nombre.trim().equalsIgnoreCase("")) {
-                if(interfaz.addOwner(nombre)){
-                    JOptionPane.showMessageDialog(interfaz, "Se agregó el ususario.");
-                }else{
-                    JOptionPane.showMessageDialog(interfaz, "No se pudo agregar el usuario.");
-                }
-            }else{
-                JOptionPane.showMessageDialog(interfaz, "Revisa los datos.");
-            }
-
+            agregarCliente();
         }else if(e.getActionCommand().equals(BTN_LISTAR)){
             listarOwners();
         }

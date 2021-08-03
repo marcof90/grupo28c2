@@ -2,15 +2,21 @@ package Controller;
 
 import java.util.ArrayList;
 
+import javax.xml.crypto.Data;
+
 import model.Owner;
+import services.JavaMySQL;
 
 public class Controlador {
     
     private ArrayList<Owner> owners;
 
+    private JavaMySQL serviceDB;
+
     public Controlador() {
         super();
         owners = new ArrayList<>();
+        serviceDB = new JavaMySQL();
     }
 
     public ArrayList<Owner> getOwner() {
@@ -34,4 +40,13 @@ public class Controlador {
         return listado;
     }
 
+    public String[] getDataOwners() {
+        String[] dataOwners = new String[owners.size()];
+        for (int i = 0; i < dataOwners.length; i++) {
+            dataOwners[i] = owners.get(i).toString();
+        }
+        return dataOwners;
+    }
+
+    
 }
