@@ -33,4 +33,11 @@ public class Controlador {
         return listado;
     }
 
+    public String[] getDataOwners(){
+        String[] dataOwners = new String[owners.size()];
+        for (int i = 0; i < dataOwners.length; i++) {
+            dataOwners[i] = owners.get(i).toString();
+        }
+        return dataOwners;
+    }
 }

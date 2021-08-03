@@ -16,7 +16,7 @@ public class Interfaz extends JFrame{
 
     public Interfaz() {
         super();
-        setSize(500, 400);
+        setSize(600, 450);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setTitle("Wallet");
@@ -30,7 +30,7 @@ public class Interfaz extends JFrame{
 
         //agregar
         add(panelOpciones, BorderLayout.SOUTH);
-        add(panelOwners, BorderLayout.WEST);
+        add(panelOwners, BorderLayout.CENTER);
     }
 
     public boolean addOwner(String nombre) {
@@ -40,6 +40,11 @@ public class Interfaz extends JFrame{
     public String listarOwners(){
         return control.listarOwners();
     }
+
+    public void updateList(){
+        panelOwners.updateList(control.getDataOwners());
+    }
+
 
     public static void main(String[] args) {
         Interfaz inter = new Interfaz();

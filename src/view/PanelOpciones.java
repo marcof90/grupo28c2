@@ -57,6 +57,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
         if (nombre != null && !nombre.trim().equalsIgnoreCase("")) {
             if (interfaz.addOwner(nombre)) {
                 JOptionPane.showMessageDialog(interfaz, "Se agergo el usuario");
+                interfaz.updateList();
             } else {
                 JOptionPane.showMessageDialog(interfaz, "No se pudo agregar el usuario");
             }
