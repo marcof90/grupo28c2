@@ -2,14 +2,18 @@ package controller;
 
 import java.util.ArrayList;
 import model.Owner;
+import services.JavaMySQL;
 
 public class Controlador {
     
     private ArrayList<Owner> owners;
 
+    private JavaMySQL serviceDB;
+
     public Controlador() {
         super();
         owners = new ArrayList<>();
+        serviceDB = new JavaMySQL();
     }
 
     public ArrayList<Owner> getOwners() {
