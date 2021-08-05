@@ -6,7 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
+
 
 public class JavaMySQL {
     
@@ -19,6 +23,10 @@ public class JavaMySQL {
         super();
         getProperties();
         connectDB();
+    }
+
+    public Connection getConnect() {
+        return connect;
     }
 
     public void getProperties() {
@@ -54,6 +62,33 @@ public class JavaMySQL {
         }
         return connect;
 
+    }
+
+    public void insertUser(String nombre) {
+        String sql = "INSERT INTO `users`(`name`, `users_status`) VALUES ('"+nombre+"', 1)";
+
+        try {
+            Statement stmt = connect.createStatement();
+            stmt.executeUpdate(sql); //executeUpdate(sql) tiene como sentencia el Sring sql
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+    public ResultSet getUsersDB() {
+        ResultSet rs = null;
+        String sql = "SELECT * FROM users";
+
+        try {
+            Statement stmt = connect.createStatement();
+            rs = stmt.executeQuery(sql);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return rs;
     }
 
 }

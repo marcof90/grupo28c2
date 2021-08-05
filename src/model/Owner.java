@@ -3,8 +3,8 @@ package model;
 public class Owner extends Usuario{
     private Wallet wallet;
 
-    public Owner(String nNombre) {
-        super();
+    public Owner(String nNombre, int id) {
+        super("", id);
         wallet = new Wallet(true);
         setNombre(nNombre);
     }
@@ -23,6 +23,6 @@ public class Owner extends Usuario{
     public String toString() {
         // TODO Auto-generated method stub
         // return super.toString();
-        return "Nombre: " + getNombre();
+        return "ID: "+getId()+" Nombre: " + getNombre();
     }
 }

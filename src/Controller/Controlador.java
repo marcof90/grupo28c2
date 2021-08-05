@@ -1,5 +1,7 @@
 package Controller;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.xml.crypto.Data;
@@ -17,6 +19,31 @@ public class Controlador {
         super();
         owners = new ArrayList<>();
         serviceDB = new JavaMySQL();
+        checkConnect();
+    }
+
+    public void checkConnect() {
+        try {
+            if (serviceDB.getConnect().isValid(30)) {
+                fillUserData(serviceDB.getUsersDB());
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void fillUserData(ResultSet rs) {
+        try {
+            while (rs.next()) {
+                Owner owner = new Owner(rs.getString("name"), rs.getInt("id"));
+                // owner.setNombre(rs.getString("name"));
+                owners.add(owner);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<Owner> getOwner() {
@@ -27,8 +54,9 @@ public class Controlador {
         if (nombre==null || nombre.equalsIgnoreCase("")) {
             return false;
         }
-        Owner cliente = new Owner(nombre);
+        Owner cliente = new Owner(nombre, owners.size());
         owners.add(cliente);
+        serviceDB.insertUser(nombre);
         return true;
     }
 

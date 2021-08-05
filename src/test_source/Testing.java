@@ -11,11 +11,11 @@ public class Testing {
         // escenarioWallet();
     }
     public void escenarioOwner() {
-        Owner owner1 = new Owner("Juan");
-        Owner owner2 = new Owner("Pedro");
+        // Owner owner1 = new Owner("Juan");
+        // Owner owner2 = new Owner("Pedro");
 
-        boolean r1 = assertTrue("Juan", owner1.getNombre());
-        System.out.println("Prueba nombre " + ((r1)? "Paso": "No paso" ));
+        // boolean r1 = assertTrue("Juan", owner1.getNombre());
+        // System.out.println("Prueba nombre " + ((r1)? "Paso": "No paso" ));
     }
 
     // public void escenarioWallet() {

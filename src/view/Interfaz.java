@@ -19,6 +19,7 @@ public class Interfaz extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setTitle("Wallet");
+
         //inicializar
         panelOpciones = new PanelOpciones(this);
         panelOwners = new PanelOwners(this);
@@ -29,6 +30,7 @@ public class Interfaz extends JFrame {
         //agregar
         add(panelOpciones, BorderLayout.SOUTH);
         add(panelOwners, BorderLayout.CENTER);
+        updateList();
     }
 
     public boolean addOwner(String nombre) {
