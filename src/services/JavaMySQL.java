@@ -70,14 +70,21 @@ public class JavaMySQL {
     }
 
     public ResultSet getUsersDB() {
-        ResultSet rs = null;
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT * FROM users";    
+        return executeQueryStatement(sql);
+    }
 
+    public ResultSet getWalletUser(int id) {
+        String sql = "SELECT * FROM wallets WHERE user_id = "+id;
+        return executeQueryStatement(sql);
+    }
+
+    public ResultSet executeQueryStatement(String sql){
+        ResultSet rs = null;
         try {
             Statement stmt = connect.createStatement();
             rs = stmt.executeQuery(sql);
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return rs;

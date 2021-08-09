@@ -10,6 +10,7 @@ public class Wallet {
      * saldo de la billetera
      */ 
     private int saldo;
+    private int id;
     private boolean tieneLimite;
     private int meta;
 
@@ -45,6 +46,18 @@ public class Wallet {
 
     public int getSaldo(){
         return saldo;
+    }
+
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String putSaldo(int valor) throws Exception{

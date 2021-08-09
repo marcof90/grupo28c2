@@ -71,4 +71,18 @@ public class Controlador {
         }
         return dataOwners;
     }
+
+    public void getWalletUser(int id) {
+        // System.out.println(owners.get(id).getWallet().getSaldo());
+        ResultSet rs = serviceDB.getWalletUser(owners.get(id).getId());
+        try {
+            while (rs.next()) {
+                owners.get(id).getWallet().setSaldo(rs.getInt("saldo"));
+                owners.get(id).getWallet().setId(rs.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+    }
 }

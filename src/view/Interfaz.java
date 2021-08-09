@@ -45,6 +45,9 @@ public class Interfaz extends JFrame{
         panelOwners.updateList(control.getDataOwners());
     }
 
+    public void getWalletUser(int id) {
+        control.getWalletUser(id);
+    }
 
     public static void main(String[] args) {
         Interfaz inter = new Interfaz();
