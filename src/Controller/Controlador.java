@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.xml.crypto.Data;
 
 import model.Owner;
 import services.JavaMySQL;
@@ -28,7 +27,6 @@ public class Controlador {
                 fillUserData(serviceDB.getUsersDB());
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -41,7 +39,6 @@ public class Controlador {
                 owners.add(owner);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -76,5 +73,20 @@ public class Controlador {
         return dataOwners;
     }
 
-    
+    public void getWalletUser(int id) {
+        // System.out.println(owners.get(id).getWallet().getSaldo());
+        
+        ResultSet rs = serviceDB.getWalletUser(owners.get(id).getId());
+        try {
+            while (rs.next()) {
+                owners.get(id).getWallet().setSaldo(rs.getInt("saldo"));
+                owners.get(id).getWallet().setId(rs.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 }
