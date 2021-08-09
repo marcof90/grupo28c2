@@ -1,6 +1,7 @@
 package model;
 
 public class Usuario {
+    private int id;
     private String nombre;
     private char estado;
     private String[] tiposDocumento;
@@ -8,17 +9,12 @@ public class Usuario {
 
     public Usuario() {
         super();
-        tiposDocumento = new String[6];
-        tiposDocumento[0] = "CC";
-        tiposDocumento[1] = "TI";
-        tiposDocumento[2] = "Pasaporte";
-        tiposDocumento[3] = "PEP";
-        tiposDocumento[4] = "DNI";
-        tiposDocumento[5] = "RC";        
+        tiposDocumento = new String[0];
     }
 
     public Usuario(String nombre, int numero) {
         super();
+        id = numero;
         tiposDocumento = new String[6];
         tiposDocumento[0] = "CC";
         tiposDocumento[1] = "TI";
@@ -26,6 +22,10 @@ public class Usuario {
         tiposDocumento[3] = "PEP";
         tiposDocumento[4] = "DNI";
         tiposDocumento[5] = "RC";   
+    }
+
+    public int getId() {
+        return id;
     }
 
     public char getEstado() {

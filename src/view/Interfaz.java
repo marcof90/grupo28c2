@@ -25,12 +25,12 @@ public class Interfaz extends JFrame{
         panelOpciones = new PanelOpciones(this);
         panelOwners = new PanelOwners(this);
         control = new Controlador();
-
         //modificar las propiedades
-
+        
         //agregar
         add(panelOpciones, BorderLayout.SOUTH);
         add(panelOwners, BorderLayout.CENTER);
+        updateList();
     }
 
     public boolean addOwner(String nombre) {
