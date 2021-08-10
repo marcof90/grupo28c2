@@ -52,9 +52,9 @@ public class PanelOwners extends JPanel implements ListSelectionListener{
         //!false == true ... resultado  true
         if (!e.getValueIsAdjusting()) {
             System.out.println(listaOwners.getSelectedIndex());
+            setSelectedIndex(listaOwners.getSelectedIndex());
             interfaz.getWalletUser(selectedIndex);
             // System.out.println(listaOwners.getSelectedValue());
-            // setSelectedIndex(listaOwners.getSelectedIndex());
         }
     }
 

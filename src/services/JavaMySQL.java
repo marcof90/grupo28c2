@@ -64,15 +64,13 @@ public class JavaMySQL {
 
     public void insertUser(String nombre) {
         String sql = "INSERT INTO `users`(`name`, `users_status`) VALUES ('"+nombre+"', 1)";
-
-        try {
-            Statement stmt = connect.createStatement();
-            stmt.executeUpdate(sql); //executeUpdate(sql) tiene como sentencia el Sring sql
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
+        excuteInsertStatement(sql);
+        insertWallet();
+    }
+    
+    public void insertWallet() {
+        String sql = "INSERT INTO `wallets`(`user_id`) SELECT MAX(id) FROM users";
+        excuteInsertStatement(sql);
     }
 
     public ResultSet getUsersDB() {
@@ -81,7 +79,12 @@ public class JavaMySQL {
     }
 
     public ResultSet getWalletUser(int id){
-        String sql = "SELECT * FROM wallets WHERE users_id = " + id;
+        String sql = "SELECT * FROM wallets WHERE user_id = " + id;
+        return executeQueryStatement(sql);
+    }
+
+    public ResultSet getWalletTransactions(int id){
+        String sql = "SELECT * FROM transaccions WHERE wallet_id = "+id;
         return executeQueryStatement(sql);
     }
 
@@ -94,6 +97,15 @@ public class JavaMySQL {
             e.printStackTrace();
         }
         return rs;
+    }
+
+    public void excuteInsertStatement(String sql) {
+        try {
+            Statement stmt = connect.createStatement();
+            stmt.executeUpdate(sql); //executeUpdate(sql) tiene como sentencia el Sring sql
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

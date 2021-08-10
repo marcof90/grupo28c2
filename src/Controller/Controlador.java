@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 
 import model.Owner;
+import model.Wallet;
 import services.JavaMySQL;
 
 public class Controlador {
@@ -43,6 +44,17 @@ public class Controlador {
         }
     }
 
+    public void fillTransactionsData(int id) {
+        ResultSet rs = serviceDB.getWalletTransactions(id);
+        try {
+            while (rs.next()) {
+                
+            }
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+    }
+
     public ArrayList<Owner> getOwner() {
         return owners;
     }
@@ -73,7 +85,15 @@ public class Controlador {
         return dataOwners;
     }
 
-    public void getWalletUser(int id) {
+    public String[] getDataTransaccions(int id) {
+        String[] dataTransactions = new String[owners.get(id).getWallet().getTransactions().size()];
+        for (int i = 0; i < dataTransactions.length; i++) {
+            dataTransactions[i] = owners.get(id).getWallet().getTransactions().toString();
+        }
+        return dataTransactions;
+    }
+
+    public Owner getWalletUser(int id) {
         // System.out.println(owners.get(id).getWallet().getSaldo());
         
         ResultSet rs = serviceDB.getWalletUser(owners.get(id).getId());
@@ -82,10 +102,11 @@ public class Controlador {
                 owners.get(id).getWallet().setSaldo(rs.getInt("saldo"));
                 owners.get(id).getWallet().setId(rs.getInt("id"));
             }
+            return owners.get(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        return null;
 
     }
 

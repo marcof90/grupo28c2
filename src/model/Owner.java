@@ -11,7 +11,6 @@ public class Owner extends Usuario{
 
     @Override
     public String getNombre() {
-        // TODO Auto-generated method stub
         return super.getNombre();
     }
 
@@ -21,7 +20,6 @@ public class Owner extends Usuario{
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
         // return super.toString();
         return "ID: "+getId()+" Nombre: " + getNombre();
     }

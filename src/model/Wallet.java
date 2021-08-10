@@ -49,6 +49,10 @@ public class Wallet {
     public void setId(int id) {
         this.id = id;
     }
+    
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
 
     public int getSaldo(){
         return saldo;
