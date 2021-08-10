@@ -56,6 +56,10 @@ public class Wallet {
         return id;
     }
 
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

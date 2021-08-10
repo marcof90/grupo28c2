@@ -1,22 +1,27 @@
 package view;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import controller.Controlador;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 public class Interfaz extends JFrame{
     
     //se crea el atributo o relacion
     private PanelOpciones panelOpciones;
     private PanelOwners panelOwners;
+    private PanelWallet panelWallet;
+    private PanelTransactions panelTransactions;
 
     private Controlador control;
 
     public Interfaz() {
         super();
-        setSize(600, 450);
+        setSize(700, 400);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setTitle("Wallet");
@@ -24,12 +29,20 @@ public class Interfaz extends JFrame{
         //inicializar
         panelOpciones = new PanelOpciones(this);
         panelOwners = new PanelOwners(this);
+        panelWallet = new PanelWallet(this);
+        panelTransactions = new PanelTransactions(this);
+
+        JPanel panelCentro = new JPanel();
+        panelCentro.setLayout(new GridLayout(1, 3));
+        panelCentro.add(panelOwners);
+        panelCentro.add(panelWallet);
+        panelCentro.add(panelTransactions);
         control = new Controlador();
         //modificar las propiedades
         
         //agregar
         add(panelOpciones, BorderLayout.SOUTH);
-        add(panelOwners, BorderLayout.CENTER);
+        add(panelCentro, BorderLayout.CENTER);
         updateList();
     }
 
@@ -46,7 +59,7 @@ public class Interfaz extends JFrame{
     }
 
     public void getWalletUser(int id) {
-        control.getWalletUser(id);
+        panelWallet.updateWallet(control.getWalletUser(id).getWallet());
     }
 
     public static void main(String[] args) {
