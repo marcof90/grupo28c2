@@ -54,6 +54,10 @@ public class Wallet {
         return transactions;
     }
 
+    public void setTransactions(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
     public int getSaldo(){
         return saldo;
     }

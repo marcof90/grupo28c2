@@ -61,7 +61,18 @@ public class Interfaz extends JFrame {
 
     public void getWalletUser(int id) {
         panelWallet.updateWallet(control.getWalletUser(id).getWallet());
+        fillTransactionsData(id);;
     }
+    
+    public void fillTransactionsData(int id) {
+        control.fillTransactionsData(id);
+        updateListTransactions(id);
+    }
+
+    public void updateListTransactions(int id) {
+        panelTransactions.updateList(control.getDataTransaccions(id));
+    }
+
 
     public static void main(String[] args) {
         Interfaz inter = new Interfaz();

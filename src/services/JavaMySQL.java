@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+import model.Transaction;
+import model.Wallet;
+
 
 public class JavaMySQL {
     
@@ -73,6 +76,13 @@ public class JavaMySQL {
         excuteInsertStatement(sql);
     }
 
+    public void insertTransaction(Wallet wallet) {
+        Transaction t = wallet.getTransactions().get(wallet.getTransactions().size()-1);
+        String sql = "INSERT INTO `transactions`(`saldo`, `transaction_type`, `wallet_id`) "+
+                    "VALUES ('"+t.getAmount()+"','"+t.getType()+"','"+wallet.getId()+"')";
+        executeQueryStatement(sql);
+    }
+
     public ResultSet getUsersDB() {
         String sql = "SELECT * FROM users";
         return executeQueryStatement(sql);
@@ -84,7 +94,7 @@ public class JavaMySQL {
     }
 
     public ResultSet getWalletTransactions(int id){
-        String sql = "SELECT * FROM transaccions WHERE wallet_id = "+id;
+        String sql = "SELECT * FROM transactions WHERE wallet_id = "+id;
         return executeQueryStatement(sql);
     }
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 
 import model.Owner;
+import model.Transaction;
 import model.Wallet;
 import services.JavaMySQL;
 
@@ -46,9 +47,11 @@ public class Controlador {
 
     public void fillTransactionsData(int id) {
         ResultSet rs = serviceDB.getWalletTransactions(id);
+        owners.get(id).getWallet().setTransactions(new ArrayList<>());
         try {
             while (rs.next()) {
-                
+                Transaction t = new Transaction(rs.getInt("saldo"), "", rs.getInt("transaction_type"));
+                owners.get(id-1).getWallet().getTransactions().add(t);            
             }
         } catch (Exception e) {
            e.printStackTrace();
