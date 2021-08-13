@@ -36,7 +36,7 @@ public class PanelWallet extends JPanel implements ActionListener{
         lblTipo = new JLabel("Tipo:");
 
         btnCargar = new JButton("Cargar");
-        btnRetirar = new JButton("retirar");
+        btnRetirar = new JButton("Retirar");
 
         btnCargar.addActionListener(this);
         btnRetirar.addActionListener(this);

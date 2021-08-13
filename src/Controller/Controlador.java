@@ -46,7 +46,7 @@ public class Controlador {
         owners.get(id_user).getWallet().setTransactions(new ArrayList<>());
         try {
             while (rs.next()) {
-                Transaction t = new Transaction(rs.getInt("amount"), "", rs.getInt("transaction_type"));
+                Transaction t = new Transaction(rs.getInt("saldo"), "", rs.getInt("transaction_type"));
                 owners.get(id_user).getWallet().getTransactions().add(t);
             }
         } catch (SQLException e) {

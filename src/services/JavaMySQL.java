@@ -71,12 +71,12 @@ public class JavaMySQL {
 
     public void insertTransaction(Wallet wallet) {
         Transaction t = wallet.getTransactions().get(wallet.getTransactions().size()-1);
-        String sql = "INSERT INTO `transactions`(`amount`, `transaction_type`, `wallet_id`) "+
+        String sql = "INSERT INTO `transactions`(`saldo`, `transaction_type`, `wallet_id`) "+
                     "VALUES ('"+t.getAmount()+"','"+t.getType()+"','"+wallet.getId()+"')";
         excuteInsertStatement(sql);
     }
     public void insertTransaction(int amount, int type, int id) {
-        String sql = "INSERT INTO `transactions`(`amount`, `transaction_type`, `wallet_id`) "+
+        String sql = "INSERT INTO `transactions`(`saldo`, `transaction_type`, `wallet_id`) "+
                     "VALUES ('"+amount+"','"+type+"','"+id+"')";
         excuteInsertStatement(sql);
     }
