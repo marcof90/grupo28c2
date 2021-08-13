@@ -11,6 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+import model.Transaction;
+import model.Wallet;
+
 
 public class JavaMySQL {
 
@@ -37,12 +40,9 @@ public class JavaMySQL {
             url = prop.getProperty("url");
             user = prop.getProperty("user");
             password = prop.getProperty("password");
-
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -69,6 +69,23 @@ public class JavaMySQL {
         excuteInsertStatement(sql);
     }
 
+    public void insertTransaction(Wallet wallet) {
+        Transaction t = wallet.getTransactions().get(wallet.getTransactions().size()-1);
+        String sql = "INSERT INTO `transactions`(`amount`, `transaction_type`, `wallet_id`) "+
+                    "VALUES ('"+t.getAmount()+"','"+t.getType()+"','"+wallet.getId()+"')";
+        excuteInsertStatement(sql);
+    }
+    public void insertTransaction(int amount, int type, int id) {
+        String sql = "INSERT INTO `transactions`(`amount`, `transaction_type`, `wallet_id`) "+
+                    "VALUES ('"+amount+"','"+type+"','"+id+"')";
+        excuteInsertStatement(sql);
+    }
+
+    public void updateSaldoWallet(int saldo, int id) {
+        String sql = "UPDATE `wallets` SET saldo = "+saldo +" WHERE id = "+id;
+        excuteInsertStatement(sql);
+    }
+
     public ResultSet getUsersDB() {
         String sql = "SELECT * FROM users";    
         return executeQueryStatement(sql);
@@ -80,9 +97,11 @@ public class JavaMySQL {
     }
 
     public ResultSet getWalletTransaccions(int id) {
-        String sql = "SELECT * FROM transaccions WHERE wallet_id = "+id;
+        String sql = "SELECT * FROM transactions WHERE wallet_id = "+id;
         return executeQueryStatement(sql);
     }
+
+
 
     public ResultSet executeQueryStatement(String sql){
         ResultSet rs = null;

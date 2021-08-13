@@ -60,6 +60,10 @@ public class Wallet {
         return transactions;
     }
 
+    public void setTransactions(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

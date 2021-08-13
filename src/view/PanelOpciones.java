@@ -48,8 +48,8 @@ public class PanelOpciones extends JPanel implements ActionListener {
         // se agregan
         add(btnAgregar);
         add(btnListar);
-        add(btnSaldo);
-        add(btnCargar);
+        // add(btnSaldo);
+        // add(btnCargar);
     }
 
     public void agregarCliente() {
@@ -74,7 +74,6 @@ public class PanelOpciones extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         if (e.getActionCommand().equals(BTN_SALDO)) {
             JOptionPane.showMessageDialog(interfaz, "El saldo es:", "Tu saldo", JOptionPane.INFORMATION_MESSAGE);
             // System.out.println("el saldo");

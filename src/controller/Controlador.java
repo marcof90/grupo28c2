@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Owner;
-import model.Wallet;
+import model.Transaction;
 import services.JavaMySQL;
 
 public class Controlador {
@@ -26,7 +26,6 @@ public class Controlador {
                 fillUserData(serviceDB.getUsersDB());
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -38,19 +37,19 @@ public class Controlador {
                 owners.add(owner);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    public void fillTransactionsData(int id) {
-        ResultSet rs = serviceDB.getWalletTransaccions(id);
+    public void fillTransactionsData(int id_user, int id_wallet) {
+        ResultSet rs = serviceDB.getWalletTransaccions(id_wallet);
+        owners.get(id_user).getWallet().setTransactions(new ArrayList<>());
         try {
             while (rs.next()) {
-                //TODO llenar transacciones de la wallet
+                Transaction t = new Transaction(rs.getInt("amount"), "", rs.getInt("transaction_type"));
+                owners.get(id_user).getWallet().getTransactions().add(t);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -67,6 +66,14 @@ public class Controlador {
         owners.add(cliente);
         serviceDB.insertUser(nombre);
         return true;
+    }
+
+    public void insertTransaction(int amount, int type, int id_wallet ) {
+        serviceDB.insertTransaction(amount, type, id_wallet);
+    }
+
+    public void updateSaldoWallet(int amount, int id) {
+        serviceDB.updateSaldoWallet(amount, id);
     }
 
     public String listarOwners() {
@@ -88,13 +95,12 @@ public class Controlador {
     public String[] getDataTransaccions(int id){
         String[] dataTransactions = new String[owners.get(id).getWallet().getTransactions().size()];
         for (int i = 0; i < dataTransactions.length; i++) {
-            dataTransactions[i] = owners.get(id).getWallet().getTransactions().toString();
+            dataTransactions[i] = owners.get(id).getWallet().getTransactions().get(i).toString();
         }
         return dataTransactions;
     }
 
     public Owner getWalletUser(int id) {
-        // System.out.println(owners.get(id).getWallet().getSaldo());
         ResultSet rs = serviceDB.getWalletUser(owners.get(id).getId());
         try {
             while (rs.next()) {
