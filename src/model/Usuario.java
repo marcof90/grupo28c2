@@ -21,7 +21,7 @@ public class Usuario {
         tiposDocumento[2] = "Pasaporte";
         tiposDocumento[3] = "PEP";
         tiposDocumento[4] = "DNI";
-        tiposDocumento[5] = "RC";
+        tiposDocumento[5] = "RC";   
     }
 
     public int getId() {

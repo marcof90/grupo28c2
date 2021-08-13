@@ -4,15 +4,10 @@ public class Owner extends Usuario{
     private Wallet wallet;
 
     public Owner(String nNombre, int id) {
-        super("", id);
+        super("",id);
         wallet = new Wallet(true);
         setNombre(nNombre);
-    }
-
-    @Override
-    public String getNombre() {
-        return super.getNombre();
-    }
+    }  
 
     public Wallet getWallet() {
         return wallet;
@@ -21,6 +16,6 @@ public class Owner extends Usuario{
     @Override
     public String toString() {
         // return super.toString();
-        return "ID: "+getId()+" Nombre: " + getNombre();
+        return "ID: "+getId()+"  Nombre: "+ getNombre();
     }
 }

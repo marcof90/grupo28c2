@@ -12,8 +12,7 @@ public class PanelTransactions extends JPanel{
 
     private JList<String> listaTransacciones;
 
-    public PanelTransactions (Interfaz i) {
-
+    public PanelTransactions(Interfaz i) {
         super();
         interfaz = i;
         setLayout(new GridLayout());
@@ -26,5 +25,5 @@ public class PanelTransactions extends JPanel{
     public void updateList(String[] listadoTransacciones) {
         listaTransacciones.setListData(listadoTransacciones);
     }
-    
+
 }

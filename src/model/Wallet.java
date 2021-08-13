@@ -1,10 +1,6 @@
 package model;
 
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Properties;
-
 
 public class Wallet {
 
@@ -17,45 +13,35 @@ public class Wallet {
     private int id;
     private boolean tieneLimite;
     private int meta;
-    
-    
+
     /**
      * lista de transacciones de la Wallet
      */
     private ArrayList<Transaction> transactions;
 
     /**
-     * Método contructor de la clase. <br>
-     * <br>
-     * saldo = 0; <br>
-     * meta = 0; <br>
-     * tieneLimite = true; <br>
-     * transactions
+     * Metodo constructor de la clase. <p>
+     * saldo = 0; <p>
+     * meta = 0; <p>
+     * tieneLimite = true; <p>
+     * transactions = new ArrayList<>(); <p>
+     * saldo = 0; <p>
      * @param limite limite que tiene la wallet según tipo
-     */
+     */    
     public Wallet(boolean limite) {
         super();
         saldo = 0;
         meta = 0;
         tieneLimite = limite;
-        transactions = new ArrayList<>();
+        transactions = new ArrayList<>();        
         transactions.size();
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
     
-    public ArrayList<Transaction> getTransactions() {
-        return transactions;
-    }
-
-    public void setTransactions(ArrayList<Transaction> transactions) {
-        this.transactions = transactions;
+    public Wallet(boolean limite, int saldo) {
+        super();
+        this.saldo = saldo;
+        meta = 0;
+        tieneLimite = limite;
     }
 
     public int getSaldo(){
@@ -66,13 +52,25 @@ public class Wallet {
         this.saldo = saldo;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String putSaldo(int valor) throws Exception{
         if(saldo + valor > LIMITE_BILLETERA && tieneLimite){
             throw new Exception("No puede superar el limite");
-        }
-
-        if (valor <= 0) {
-            throw new Exception("No puede consignar un valor nulo o negativo");
         }
         saldo += valor;
         Transaction transaction = new Transaction(valor, "hoy", 1);
@@ -81,20 +79,18 @@ public class Wallet {
         return "Operación exitosa, nuevo saldo " + saldo;
     }
 
-    public String getMoney(int valor) throws Exception{
+    public String getMoney(int valor) {
         // if(valor > saldo){
         //     return "Saldo insuficiente";
         // }
-        if (valor <= 0) {
-            throw new Exception("No puede consignar un valor nulo o negativo");
-        }
-
         if(valor > saldo){
             int saldoTemp = saldo;
             saldo = 0;
             return "Solo se retiró " + saldoTemp;
         }
         saldo -= valor;
+        Transaction transaction = new Transaction(valor, "hoy", 2);
+        transactions.add(transaction);
         return "Retiro exitoso, nuevo saldo " + saldo;
     }
 
@@ -135,7 +131,7 @@ public class Wallet {
         return "Operación exitosa. Su cuenta ahora es sin límites, nuevo saldo: " + saldo;
     }
 
-    public String compararBilleteras(Wallet otraWallet){
+    public String compararBilleteras(Wallet otraWallet){        
         if(saldo > otraWallet.getSaldo()){
             return "Tienes más saldo!";
         }
@@ -144,28 +140,11 @@ public class Wallet {
         }else{
             return "Tienes menos saldo :(";
         }
-        
-    }
-
-    public void displayExtractos(){
-
-        try {
-            
-            OutputStream ous = new FileOutputStream("./data/data.properties");
-
-            Properties prop = new Properties();
-
-            
-            for (Transaction transaction : transactions){
-                System.out.println(transaction);
-            }
-
-            prop.store(ous, null);
-            
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
-
     }
     
+    public void displayExtractos(){
+        for (Transaction transaction : transactions) {
+            System.out.println(transaction);
+        }
+    }
 }

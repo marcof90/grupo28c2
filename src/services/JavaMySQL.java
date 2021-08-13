@@ -16,7 +16,7 @@ import model.Wallet;
 
 
 public class JavaMySQL {
-    
+
     private Connection connect;
     private String url;
     private String user;
@@ -33,7 +33,6 @@ public class JavaMySQL {
     }
 
     public void getProperties() {
-        
         try {
             InputStream ins = new FileInputStream("./data/db.properties");
             Properties prop = new Properties();
@@ -41,8 +40,6 @@ public class JavaMySQL {
             url = prop.getProperty("url");
             user = prop.getProperty("user");
             password = prop.getProperty("password");
-            
-            
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -51,26 +48,22 @@ public class JavaMySQL {
     }
 
     public Connection connectDB() {
-        
         try {
             connect = DriverManager.getConnection(url, user, password);
             boolean isValid = connect.isValid(500);
-            System.out.println(isValid ? "Connected":"Failed");
-            System.out.println();
-            
+            System.out.println(isValid ? "Connected" : "Failed");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return connect;
-
     }
 
     public void insertUser(String nombre) {
-        String sql = "INSERT INTO `users`(`name`, `users_status`) VALUES ('"+nombre+"', 1)";
+        String sql = "INSERT INTO `users`(`name`, `user_status`) VALUES ('"+nombre+"',1)";
         excuteInsertStatement(sql);
         insertWallet();
     }
-    
+
     public void insertWallet() {
         String sql = "INSERT INTO `wallets`(`user_id`) SELECT MAX(id) FROM users";
         excuteInsertStatement(sql);
@@ -78,25 +71,37 @@ public class JavaMySQL {
 
     public void insertTransaction(Wallet wallet) {
         Transaction t = wallet.getTransactions().get(wallet.getTransactions().size()-1);
-        String sql = "INSERT INTO `transactions`(`saldo`, `transaction_type`, `wallet_id`) "+
+        String sql = "INSERT INTO `transactions`(`amount`, `transaction_type`, `wallet_id`) "+
                     "VALUES ('"+t.getAmount()+"','"+t.getType()+"','"+wallet.getId()+"')";
-        executeQueryStatement(sql);
+        excuteInsertStatement(sql);
+    }
+    public void insertTransaction(int amount, int type, int id) {
+        String sql = "INSERT INTO `transactions`(`amount`, `transaction_type`, `wallet_id`) "+
+                    "VALUES ('"+amount+"','"+type+"','"+id+"')";
+        excuteInsertStatement(sql);
+    }
+
+    public void updateSaldoWallet(int saldo, int id) {
+        String sql = "UPDATE `wallets` SET saldo = "+saldo +" WHERE id = "+id;
+        excuteInsertStatement(sql);
     }
 
     public ResultSet getUsersDB() {
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT * FROM users";    
         return executeQueryStatement(sql);
     }
 
-    public ResultSet getWalletUser(int id){
-        String sql = "SELECT * FROM wallets WHERE user_id = " + id;
+    public ResultSet getWalletUser(int id) {
+        String sql = "SELECT * FROM wallets WHERE user_id = "+id;
         return executeQueryStatement(sql);
     }
 
-    public ResultSet getWalletTransactions(int id){
+    public ResultSet getWalletTransaccions(int id) {
         String sql = "SELECT * FROM transactions WHERE wallet_id = "+id;
         return executeQueryStatement(sql);
     }
+
+
 
     public ResultSet executeQueryStatement(String sql){
         ResultSet rs = null;
@@ -112,7 +117,7 @@ public class JavaMySQL {
     public void excuteInsertStatement(String sql) {
         try {
             Statement stmt = connect.createStatement();
-            stmt.executeUpdate(sql); //executeUpdate(sql) tiene como sentencia el Sring sql
+            stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
         }

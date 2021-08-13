@@ -10,23 +10,20 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.GridLayout;
 
 public class PanelOwners extends JPanel implements ListSelectionListener{
-
-    private int selectedIndex;
     
+    private int selectedIndex;
+
     private JList<String> listaOwners;
 
     private Interfaz interfaz;
 
-    public PanelOwners (Interfaz inter) {
+    public PanelOwners(Interfaz inter) {
         super();
         setLayout(new GridLayout());
-        setBorder(new TitledBorder(("Clientes")));
-
+        setBorder(new TitledBorder("Clientes"));
+        
         selectedIndex = -1;
         interfaz = inter;
-
-        // String[] datos = {"uno", "dos", "tres"};
-
         listaOwners = new JList<>();
 
         listaOwners.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -35,6 +32,10 @@ public class PanelOwners extends JPanel implements ListSelectionListener{
         add(listaOwners);
     }
 
+    /**
+     * metodo que retorna el indice seleccionado de la lista de owners
+     * @return selectedIndex
+     */
     public int getSelectedIndex() {
         return selectedIndex;
     }
@@ -43,19 +44,18 @@ public class PanelOwners extends JPanel implements ListSelectionListener{
         this.selectedIndex = selectedIndex;
     }
 
-    public void updateList (String[] nombres) {
+    public void updateList(String[] nombres) {
         listaOwners.setListData(nombres);
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        //!false == true ... resultado  true
-        if (!e.getValueIsAdjusting()) {
-            System.out.println(listaOwners.getSelectedIndex());
+        // !false == true ... resultado true
+        if(!e.getValueIsAdjusting()){
             setSelectedIndex(listaOwners.getSelectedIndex());
             interfaz.getWalletUser(selectedIndex);
-            // System.out.println(listaOwners.getSelectedValue());
-        }
+        }        
     }
+
 
 }
